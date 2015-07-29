@@ -1,0 +1,19 @@
+# Schema for overriding defaults and templated dovecot settings
+
+# OID generated with a temporal UUID
+objectIdentifier tempDovecot 2.25.254658843762420874607567831111777777777
+objectIdentifier dovecotAttributeType tempDovecot:1
+objectIdentifier dovecotObjectClass tempDovecot:2
+
+attributetype ( dovecotAttributeType:11 NAME 'x-mailAttachmentDir'
+	DESC 'Absolute path for single instance attachment storage'
+	EQUALITY caseExactIA5Match
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+
+objectclass ( dovecotObjectClass:1 NAME 'x-dovecot-settings'
+	DESC 'Dovecot settings for mail recipient'
+	SUP top
+	AUXILIARY
+	MUST mail
+	MAY x-mailAttachmentDir
+	)
